@@ -39,5 +39,9 @@ namespace SistemaRolPagos.Entidades
         public TipoDiscapacidad Tipo_Discapacidad { get; set; }
         public int TipoDiscapacidad_Id { get; set; }
 
+        //Propiedad relacion con JornadaTrabajo
+        public JornadaTrabajo Jornada_Trabajo { get; set; }
+        public int JornadaTrabajos { get; set; }
+
     }
 }
