@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Rubros
     {
-        public int Rubro_Id { get; set; }
+        public int RubrosId { get; set; }
         public string Nombre_Rubro { get; set; }
         public string Tipo_Rubro { get; set; }
         public int Mes_Pago_Rubro { get; set; }

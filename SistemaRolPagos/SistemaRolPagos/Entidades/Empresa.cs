@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Empresa
     {
-        public int Empresa_Id { get; set; }
+        public int EmpresaId { get; set; }
         public string Nombre_Empresa { get; set; }
         public string RUC_Empresa { get; set; }
         public string Representante_Empresa { get; set; }

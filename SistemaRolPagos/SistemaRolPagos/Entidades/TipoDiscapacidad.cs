@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class TipoDiscapacidad
     {
-        public int TipoDiscapacidad_Id { get; set; }
+        public int TipoDiscapacidadId { get; set; }
         public string Descripcion_TipoDiscapacidad { get; set; }
     }
 }

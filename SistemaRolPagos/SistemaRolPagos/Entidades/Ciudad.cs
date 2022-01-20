@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Ciudad
     {
-        public int Ciudad_Id { get; set; }
+        public int CiudadId { get; set; }
         public string Nombre_Ciudad { get; set; }
 
         //Propiedad relacion con Region

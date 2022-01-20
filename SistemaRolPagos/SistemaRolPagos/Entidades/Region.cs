@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Region
     {
-        public int Region_Id { get; set; }
+        public int RegionId { get; set; }
         public string Nombre_Region { get; set; }
 
         //Propiedad relacion con Pais

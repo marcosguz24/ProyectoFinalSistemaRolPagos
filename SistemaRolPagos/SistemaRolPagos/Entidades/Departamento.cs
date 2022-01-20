@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Departamento
     {
-        public int Departamento_Id { get; set; }
+        public int DepartamentoId { get; set; }
         public string Nombre_Departamento { get; set; }
     }
 }

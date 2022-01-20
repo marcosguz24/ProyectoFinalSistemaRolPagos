@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class TipoContrato
     {
-        public int TipoContrato_Id { get; set; }
+        public int TipoContratoId { get; set; }
         public string Descripcion_Tipo_Contrato { get; set; }
     }
 }

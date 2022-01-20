@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Pais
     {
-        public int Pais_id { get; set; }
+        public int PaisId { get; set; }
         public string Nombre_Pais { get; set; }
     }
 }

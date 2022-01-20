@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Cargo
     {
-        public int Cargo_Id { get; set; }
+        public int CargoId { get; set; }
         public string Nombre_Cargo { get; set; }
 
         //Propiedades relacion con Departamento

@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class JornadaTrabajo
     {
-        public int JornadaTrabajo_Id { get; set; }
+        public int JornadaTrabajoId { get; set; }
         public string Tipo_Jornada { get; set; }
     }
 }

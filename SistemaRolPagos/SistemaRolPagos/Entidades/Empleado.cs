@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class Empleado
     {
-        public int Empleado_Id { get; set; }
+        public int EmpleadoId { get; set; }
         public string Apellidos_Empleado { get; set; }
         public string Nombres_Empleado { get; set; }
         public string Cedula_Empleado { get; set; }
@@ -41,7 +41,11 @@ namespace SistemaRolPagos.Entidades
 
         //Propiedad relacion con JornadaTrabajo
         public JornadaTrabajo Jornada_Trabajo { get; set; }
-        public int JornadaTrabajos { get; set; }
+        public int JornadaTrabajos_Id { get; set; }
+
+        //Propiedad relacion con empleado
+        public Asistencia AsistenciaEmpleados { get; set; }
+        public int Asistencia_Id { get; set; }
 
     }
 }

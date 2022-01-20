@@ -8,7 +8,7 @@ namespace SistemaRolPagos.Entidades
 {
     public class RolPagos
     {
-        public int RolPagos_Id { get; set; }
+        public int RolPagosId { get; set; }
         public string Descripcion_RolPagos { get; set; }
         public DateTime Fecha_Inicio { get; set; }
         public DateTime Fecha_Fin { get; set; }
