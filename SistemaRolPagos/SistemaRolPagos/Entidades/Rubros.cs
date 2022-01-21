@@ -16,7 +16,13 @@ namespace SistemaRolPagos.Entidades
         public decimal Facturar_Rubro { get; set; }
 
         //Propiedad relacion con Empleado
-        public IEnumerable<Empleado> Lista_Empleado { get; set; }
-        public int Empleado { get; set; }
+        public Empleado Nombre_Empleado { get; set; }
+
+        //Propiedad relacion con RubrosEmpleados
+        public IEnumerable<RubrosEmpleados> RubroEmpleados { get; set; }
+
+        //Propiedad relacion con RolPagos
+        public RolPagos Rol_Pagos { get; set; }
+        public int RolPagosId { get; set; }
     }
 }

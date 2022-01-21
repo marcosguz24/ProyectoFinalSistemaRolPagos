@@ -15,12 +15,11 @@ namespace SistemaRolPagos.Entidades
         public string Hora_Fin { get; set; }
         public string Estado_Permiso { get; set; }
 
-        //Propiedad relacion con TipoPermiso
+        //Propiedad de la relacion 1 - 1 con TipoPermiso
         public TipoPermisos Tipo_Permisos { get; set; }
-        public int TipoPermisos_Id { get; set; }
+        public int TipoPermisosId { get; set; }
 
         //Propiedad relacion con Empleado
-        public Empleado Nombre_Empleado { get; set; }
-        public int Empleado_Id { get; set; }
+        public IEnumerable<Empleado> Nombre_Empleado { get; set; }
     }
 }

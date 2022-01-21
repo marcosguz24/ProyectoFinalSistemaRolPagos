@@ -10,5 +10,8 @@ namespace SistemaRolPagos.Entidades
     {
         public int PaisId { get; set; }
         public string Nombre_Pais { get; set; }
+
+        //Propiedad para la relacion 1 - n con Region
+        public IEnumerable<Region> Lista_Regiones { get; set; }
     }
 }

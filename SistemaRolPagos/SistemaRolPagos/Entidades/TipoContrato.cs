@@ -10,5 +10,8 @@ namespace SistemaRolPagos.Entidades
     {
         public int TipoContratoId { get; set; }
         public string Descripcion_Tipo_Contrato { get; set; }
+
+        //Propiedad de la relacion 1 - n con Contrato
+        public IEnumerable<Contrato> Lista_Contrato { get; set; }
     }
 }

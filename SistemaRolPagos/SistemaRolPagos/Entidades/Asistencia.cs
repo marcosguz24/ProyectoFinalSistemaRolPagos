@@ -16,6 +16,5 @@ namespace SistemaRolPagos.Entidades
 
         //Propiedades relacion con Empleado
         public IEnumerable<Empleado> Lista_Empleados { get; set; }
-
     }
 }

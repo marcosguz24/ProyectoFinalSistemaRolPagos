@@ -15,11 +15,14 @@ namespace SistemaRolPagos.Entidades
 
         //Propiedad para implementar la relacion 1 - n con TipoContrato
         public TipoContrato Tipo_Contrato { get; set; }
-        public int TipoContrato_Id { get; set; }
+        public int TipoContratoId { get; set; }
 
-        //Propiedad para implementar la relacion 1 - n con Contrato
+        //Propiedad para implementar la relacion 1 - 1 con Cargo
         public Cargo Nombre_Cargo { get; set; }
-        public int Cargo_Id { get; set; }
+
+        //Propiedad para implementar la realacion 1 - 1 con Empleado
+        public int EmpleadoId { get; set; }
+        public Empleado Nombre_Empleado { get; set; }
 
     }
 }

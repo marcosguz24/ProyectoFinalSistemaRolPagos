@@ -10,5 +10,9 @@ namespace SistemaRolPagos.Entidades
     {
         public int DepartamentoId { get; set; }
         public string Nombre_Departamento { get; set; }
+
+        //Propiedad de la relacion 1 - n con Cargo
+        public Cargo Nombre_Cargo { get; set; }
+        public int CargoId { get; set; }
     }
 }

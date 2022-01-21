@@ -13,6 +13,8 @@ namespace SistemaRolPagos.Entidades
 
         //Propiedad relacion con Pais
         public Pais Nombre_Pais { get; set; }
-        public int Pais_Id { get; set; }
+        public int PaisId { get; set; }
+
+        public IEnumerable<Ciudad> Lista_Ciudades { get; set; }
     }
 }

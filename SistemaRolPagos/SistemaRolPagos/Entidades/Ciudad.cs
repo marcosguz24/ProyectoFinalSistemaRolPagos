@@ -13,6 +13,6 @@ namespace SistemaRolPagos.Entidades
 
         //Propiedad relacion con Region
         public Region Nombre_Region { get; set; }
-        public int Region_Id { get; set; }
+        public int RegionId { get; set; }
     }
 }

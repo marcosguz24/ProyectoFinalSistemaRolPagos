@@ -10,14 +10,6 @@ namespace SistemaRolPagosConsola
 
         static void Main(string[] args)
         {
-            //Creacion de la empresa
-            Empresa SondaEcuador = new Empresa()
-            {
-                Nombre_Empresa = "Sonda Ecuador",
-                RUC_Empresa = "1789632540001",
-                Representante_Empresa = "María Puican"
-            };
-
             //Creacion del Pais
             Pais Ecuador = new Pais()
             {
@@ -58,25 +50,22 @@ namespace SistemaRolPagosConsola
             Cargo CargoJuanPerez = new Cargo()
             {
                 Nombre_Cargo = "Desarrollador de Software",
-                Nombre_Departamento = Sistemas,
+                
             };
 
             Cargo CargoMariaAlvarado = new Cargo()
             {
                 Nombre_Cargo = "Marketing",
-                Nombre_Departamento = Marketing
             };
 
             Cargo CargoEmilianoManzanero = new Cargo()
             {
                 Nombre_Cargo = "Marketing",
-                Nombre_Departamento = Marketing
             };
 
             Cargo CargoBlancaToapanta = new Cargo()
             {
                 Nombre_Cargo = "QA",
-                Nombre_Departamento = Sistemas
             };
 
             //Creacion del Tipo de Contrato
@@ -88,31 +77,36 @@ namespace SistemaRolPagosConsola
             {
                 Inicio_Contrato = new DateTime(2020, 8, 15),
                 Fin_Contrato = new DateTime(),
+                Sueldo_Contrato = (decimal) 1200.00,
                 Tipo_Contrato = Indefinido,
                 Nombre_Cargo = CargoJuanPerez
-
             };
 
             Contrato ContratoMariaAlvarado = new Contrato()
             {
                 Inicio_Contrato = new DateTime(2021, 1, 3),
                 Fin_Contrato = new DateTime(2022, 1, 15),
-                Tipo_Contrato = Temporal
+                Sueldo_Contrato = (decimal)1120.00,
+                Tipo_Contrato = Temporal,
+                Nombre_Cargo = CargoMariaAlvarado
             };
 
             Contrato ContratoEmilianoManzanero = new Contrato()
             {
                 Inicio_Contrato = new DateTime(2019, 5, 15),
                 Fin_Contrato = new DateTime(),
+                Sueldo_Contrato = (decimal)800.00,
                 Tipo_Contrato = Indefinido,
-                
+                Nombre_Cargo = CargoEmilianoManzanero
             };
 
             Contrato ContratoBlancaToapanta = new Contrato()
             {
                 Inicio_Contrato = new DateTime(2021, 2, 3),
                 Fin_Contrato = new DateTime(2021, 8, 15),
-                Tipo_Contrato = Temporal
+                Sueldo_Contrato = (decimal)1200.00,
+                Tipo_Contrato = Temporal,
+                Nombre_Cargo = CargoBlancaToapanta
             };
 
             
@@ -126,6 +120,17 @@ namespace SistemaRolPagosConsola
             JornadaTrabajo Vespertina = new JornadaTrabajo()
             {
                 Tipo_Jornada = "Vespertina"
+            };
+
+            //Creacion del Tipo de Discapacidad
+            TipoDiscapacidad auditiva = new TipoDiscapacidad()
+            {
+                Descripcion_TipoDiscapacidad = "Discapacidad auditiva"
+            };
+
+            TipoDiscapacidad fisica = new TipoDiscapacidad()
+            {
+                Descripcion_TipoDiscapacidad = "Discapacidad fisica"
             };
 
             //Creacion de un empleado
@@ -144,21 +149,17 @@ namespace SistemaRolPagosConsola
                 Banco = "Pichincha",
                 Tipo_Cuenta = "Ahorros",
                 Numero_Cuenta = "2200704850",
-                Nombre_Empresa = SondaEcuador,
                 Nombre_Ciudad = Guayaquil,
                 contrato = ContratoJuanPerez,
-                Tipo_Discapacidad = new TipoDiscapacidad()
-                {
-                    Descripcion_TipoDiscapacidad = "Discapacidad 1"
-                },
                 Jornada_Trabajo = Diurna
             };
-            /*
+            
             Empleado MariaAlvarado = new Empleado()
             {
                 Apellidos_Empleado = "Alvarado Pilatuña",
                 Nombres_Empleado = "Maria Fernanda",
                 Cedula_Empleado = "0258963147",
+                Pasaporte_Empleado = "179632587410",
                 Email_Empleado = "malvarado@mail.com",
                 Celular_Empleado = "0987456321",
                 Profesion_Empleado = "Ingeniero en Marketing",
@@ -168,13 +169,8 @@ namespace SistemaRolPagosConsola
                 Banco = "Pichincha",
                 Tipo_Cuenta = "Corriente",
                 Numero_Cuenta = "3389562147",
-                Nombre_Empresa = SondaEcuador,
                 Nombre_Ciudad = Quito,
                 contrato = ContratoMariaAlvarado,
-                Tipo_Discapacidad = new TipoDiscapacidad()
-                {
-                    Descripcion_TipoDiscapacidad = "Discapacidad 1"
-                },
                 Jornada_Trabajo = Vespertina
             };
 
@@ -183,6 +179,7 @@ namespace SistemaRolPagosConsola
                 Apellidos_Empleado = "Manzanero Valdez",
                 Nombres_Empleado = "Emiliano Joao",
                 Cedula_Empleado = "0879632145",
+                Pasaporte_Empleado = "19632587410",
                 Email_Empleado = "emanzanero@mail.com",
                 Celular_Empleado = "0963258741",
                 Profesion_Empleado = "Ingeniero en Marketing",
@@ -192,13 +189,8 @@ namespace SistemaRolPagosConsola
                 Banco = "Pichincha",
                 Tipo_Cuenta = "Ahorros",
                 Numero_Cuenta = "2287963140",
-                Nombre_Empresa = SondaEcuador,
                 Nombre_Ciudad = Guayaquil,
                 contrato = ContratoEmilianoManzanero,
-                Tipo_Discapacidad = new TipoDiscapacidad()
-                {
-                    Descripcion_TipoDiscapacidad = "Discapacidad 1"
-                },
                 Jornada_Trabajo = Diurna
             };
 
@@ -207,6 +199,7 @@ namespace SistemaRolPagosConsola
                 Apellidos_Empleado = "Toapanta Pibil",
                 Nombres_Empleado = "Blanca Irene",
                 Cedula_Empleado = "1789654230",
+                Pasaporte_Empleado = "187304875263",
                 Email_Empleado = "btoapanta@mail.com",
                 Celular_Empleado = "0965823147",
                 Profesion_Empleado = "Tecnologa en Sistemas",
@@ -216,15 +209,10 @@ namespace SistemaRolPagosConsola
                 Banco = "Pichincha",
                 Tipo_Cuenta = "Ahorros",
                 Numero_Cuenta = "2278965413",
-                Nombre_Empresa = SondaEcuador,
                 Nombre_Ciudad = Quito,
                 contrato = ContratoBlancaToapanta,
-                Tipo_Discapacidad = new TipoDiscapacidad()
-                {
-                    Descripcion_TipoDiscapacidad = "Discapacidad 1"
-                },
                 Jornada_Trabajo = Vespertina
-            };*/
+            };
 
             //Creacion de la Asistencia de los empleados
             Asistencia asistencia = new Asistencia()
@@ -232,7 +220,7 @@ namespace SistemaRolPagosConsola
                 Fecha_Asistencia = new DateTime(2020, 8, 8),
                 Hora_Asistencia = "8:00 am",
                 Tipo_Asistencia = "Jornada Laboral",
-                Lista_Empleados = new List<Empleado> { JuanPerez}
+                Lista_Empleados = new List<Empleado> { JuanPerez, MariaAlvarado, EmilianoManzanero, BlancaToapanta}
             };
 
             Repositorio repositorio = new Repositorio();

@@ -23,29 +23,37 @@ namespace SistemaRolPagos.Entidades
         public string Tipo_Cuenta { get; set; }
         public string Numero_Cuenta { get; set; }
 
-        //Propiedad relacion con Empresa
-        public Empresa Nombre_Empresa { get; set; }
-        public int Empresa_Id { get; set; }
-
         //Propiedad relacion con Contrato
         public Contrato contrato { get; set; }
-        public int Contrato_Id { get; set; }
 
         //Propiedad relacion con Ciudad
         public Ciudad Nombre_Ciudad { get; set; }
-        public int Ciudad_Id { get; set; }
 
         //Propiedad relacion con TipoDiscapacidad
-        public TipoDiscapacidad Tipo_Discapacidad { get; set; }
-        public int TipoDiscapacidad_Id { get; set; }
+        public TipoDiscapacidad Nombre_TipoDiscapacidad { get; set; }
+        public int TipoDiscapacidadId { get; set; }
+
+        //Propiedad relacion con DiscapacidadEmpleado
+        public IEnumerable<DiscapacidadEmpleado> Discapacidades { get; set; }
 
         //Propiedad relacion con JornadaTrabajo
         public JornadaTrabajo Jornada_Trabajo { get; set; }
-        public int JornadaTrabajos_Id { get; set; }
+        public int JornadaTrabajoId { get; set; }
 
-        //Propiedad relacion con empleado
+        //Porpiedad relacion con Permiso
+        public Permisos Nombre_Permiso { get; set; }
+        public int PermisosId { get; set; }
+
+        //Propiedad relacion con Rubros
+        public Rubros Nombre_Rubros { get; set; }
+        public int RubrosId { get; set; }
+
+        //Propiedad relacion con RubrosEmpleados
+        public IEnumerable<RubrosEmpleados> Rubros_Empleados { get; set; }
+
+        //Propiedad relacion con Asistencia
         public Asistencia AsistenciaEmpleados { get; set; }
-        public int Asistencia_Id { get; set; }
+        public int AsistenciaId { get; set; }
 
     }
 }

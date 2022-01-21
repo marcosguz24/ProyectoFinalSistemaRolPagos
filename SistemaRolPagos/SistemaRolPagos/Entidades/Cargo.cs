@@ -12,8 +12,11 @@ namespace SistemaRolPagos.Entidades
         public int CargoId { get; set; }
         public string Nombre_Cargo { get; set; }
 
-        //Propiedades relacion con Departamento
-        public Departamento Nombre_Departamento { get; set; }
-        public int Departamento_Id { get; set; }
+        //Propiedades de la relacion 1- n con Departamento
+        public IEnumerable<Departamento> Lista_Departamento { get; set; }
+
+        //Propiedad de la relacion 1 - 1 con Contrato
+        public Contrato Nombre_Contrato { get; set; }
+        public int ContratoId { get; set; }
     }
 }

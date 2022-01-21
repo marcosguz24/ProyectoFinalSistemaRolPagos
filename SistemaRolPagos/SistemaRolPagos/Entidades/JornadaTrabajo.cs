@@ -10,5 +10,8 @@ namespace SistemaRolPagos.Entidades
     {
         public int JornadaTrabajoId { get; set; }
         public string Tipo_Jornada { get; set; }
+
+        //Propiedad de la relacion 1 - n con Empleado
+        public IEnumerable<Empleado> Nombre_Empleado { get; set; }
     }
 }
