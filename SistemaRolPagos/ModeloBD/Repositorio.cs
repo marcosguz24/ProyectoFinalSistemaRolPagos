@@ -111,11 +111,13 @@ namespace ModeloBD
             modelBuilder.Entity<RubrosEmpleados>()
                 .HasOne(rubrosEmpleados => rubrosEmpleados.Nombre_Rubro)
                 .WithMany(rubros => rubros.RubroEmpleados)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(rubrosEmpleados => rubrosEmpleados.RubrosId);
 
             modelBuilder.Entity<RubrosEmpleados>()
                 .HasOne(rubrosEmpleados => rubrosEmpleados.Nombre_Empleado)
                 .WithMany(empleado => empleado.Rubros_Empleados)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(rubrosEmpleados => rubrosEmpleados.EmpeladoId);
 
             //Relacion uno a uno de Empleado a TipoDiscapacidad
@@ -131,11 +133,13 @@ namespace ModeloBD
             modelBuilder.Entity<DiscapacidadEmpleado>()
                 .HasOne(discapacidadEmpleado => discapacidadEmpleado.Discapacidad)
                 .WithMany(tipoDiscapacidad => tipoDiscapacidad.Discapacidades)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(discapacidadEmpleado => discapacidadEmpleado.TipoDiscapacidadId);
 
             modelBuilder.Entity<DiscapacidadEmpleado>()
                 .HasOne(discapacidadEmpleado => discapacidadEmpleado.Nombre_Empleado)
-                .WithMany(empleado => empleado.Discapacidades)
+                .WithMany(empleado => empleado.Discapacidad)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(discapacidadEmpleado => discapacidadEmpleado.EmpleadoId);
         }
 

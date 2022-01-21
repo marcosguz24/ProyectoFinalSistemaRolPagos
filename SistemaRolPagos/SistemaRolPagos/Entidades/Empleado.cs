@@ -34,7 +34,7 @@ namespace SistemaRolPagos.Entidades
         public int TipoDiscapacidadId { get; set; }
 
         //Propiedad relacion con DiscapacidadEmpleado
-        public IEnumerable<DiscapacidadEmpleado> Discapacidades { get; set; }
+        public IEnumerable<DiscapacidadEmpleado> Discapacidad { get; set; }
 
         //Propiedad relacion con JornadaTrabajo
         public JornadaTrabajo Jornada_Trabajo { get; set; }
