@@ -1,0 +1,84 @@
+﻿@using SistemaRolPagos.Entidades
+
+@model IEnumerable<Empleado>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Empleados</h1>
+<p>Se presenta a continuación la lista de empleados en el SGRP</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de Empleados</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-bg-success d-block" asp-controller="Empleados" asp-action="Create">
+                Crear Empleado
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Apellidos</td>
+                    <td>Nombres</td>
+                    <td>Cédula</td>
+                    <td>Celular</td>
+                    <td>E-mail</td>
+                    <td>Profesion</td>
+                    <td>Nivel de Educación</td>
+                    <td>Sexo</td>
+                    <td>Banco</td>
+                    <td>Tipo de Cuenta</td>
+                    <td>Número de Cuenta</td>
+                    <td>Contrato</td>
+                    <td>Ciudad</td>
+                    <td>Discapacidad</td>
+                    <td>Jornada de Trabajo</td>
+                    <td>Permisos</td>
+                    <td>Rubros</td>
+                    <td>Asistencia</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Empleado empleado in Model)
+                {
+                    <tr>
+                        <td>@empleado.Apellidos_Empleado</td>
+                        <td>@empleado.Nombres_Empleado</td>
+                        <td>@empleado.Cedula_Empleado</td>
+                        <td>@empleado.Celular_Empleado</td>
+                        <td>@empleado.Email_Empleado</td>
+                        <td>@empleado.Profesion_Empleado</td>
+                        <td>@empleado.Nivel_Educacion_Empleado</td>
+                        <td>@empleado.Sexo_Empelado</td>
+                        <td>@empleado.Banco</td>
+                        <td>@empleado.Numero_Cuenta</td>
+                        <td>@empleado.Tipo_Cuenta</td>
+                        <td>@empleado.contrato</td>
+                        <td>@empleado.Nombre_Ciudad</td>
+                        <td>@empleado.Nombre_TipoDiscapacidad</td>
+                        <td>@empleado.Jornada_Trabajo</td>
+                        <td>@empleado.Nombre_Permiso</td>
+                        <td>@empleado.Nombre_Rubros</td>
+                        <td>@empleado.AsistenciaEmpleados</td>
+                        <td>
+                            <a class="btn btn-warning" asp-controller="Empleados" asp-action="Edit" asp-route-id="@empleado.EmpleadoId">
+                                Editar
+                            </a>
+                            <a class="btn btn-danger" asp-controller="Empleados" asp-action="Edit" asp-route-id="@empleado.EmpleadoId">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

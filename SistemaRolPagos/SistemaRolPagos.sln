@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelo", "SistemaRolPagos\Modelo.csproj", "{641F50A8-F97C-41DD-8E8D-F15F2E6720C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modelo", "SistemaRolPagos\Modelo.csproj", "{641F50A8-F97C-41DD-8E8D-F15F2E6720C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaRolPagosConsola", "SistemaRolPagosConsola\SistemaRolPagosConsola.csproj", "{498CD23D-D2FC-4CD5-AEF8-C1D9DE7FDC73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaRolPagosConsola", "SistemaRolPagosConsola\SistemaRolPagosConsola.csproj", "{498CD23D-D2FC-4CD5-AEF8-C1D9DE7FDC73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModeloBD", "ModeloBD\ModeloBD.csproj", "{E265EE3A-66FF-48B9-8DA0-89A2A1C83DAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModeloBD", "ModeloBD\ModeloBD.csproj", "{E265EE3A-66FF-48B9-8DA0-89A2A1C83DAA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CargaDatos", "CargaDatos\CargaDatos.csproj", "{002CF799-EDB7-4136-A636-6AB5AB0EEDB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSGRP", "WebSGRP\WebSGRP.csproj", "{135059D0-F132-4481-B8EF-8155EBED1429}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{E265EE3A-66FF-48B9-8DA0-89A2A1C83DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E265EE3A-66FF-48B9-8DA0-89A2A1C83DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E265EE3A-66FF-48B9-8DA0-89A2A1C83DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002CF799-EDB7-4136-A636-6AB5AB0EEDB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002CF799-EDB7-4136-A636-6AB5AB0EEDB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002CF799-EDB7-4136-A636-6AB5AB0EEDB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002CF799-EDB7-4136-A636-6AB5AB0EEDB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{135059D0-F132-4481-B8EF-8155EBED1429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{135059D0-F132-4481-B8EF-8155EBED1429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{135059D0-F132-4481-B8EF-8155EBED1429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{135059D0-F132-4481-B8EF-8155EBED1429}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

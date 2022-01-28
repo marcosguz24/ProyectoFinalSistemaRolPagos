@@ -10,24 +10,30 @@ namespace ModeloBD
 {
     public class Repositorio: DbContext
     {
+        public Repositorio(DbContextOptions<Repositorio> options)
+            : base(options)
+        {
+
+        }
+
         //Configuracion Entidades
-        public DbSet<Asistencia> Asistencias { get; set; }
-        public DbSet<Cargo> Cargos { get; set; }
-        public DbSet<Contrato> Contratos { get; set; }
-        public DbSet<Ciudad> Ciudades { get; set; }
-        public DbSet<Departamento> Departamentos { get; set; }
-        public DbSet<Empleado> Empleados { get; set; }
-        public DbSet<JornadaTrabajo> JornadasTrabajos { get; set; }
-        public DbSet<Pais> Paises { get; set; }
-        public DbSet<Permisos> Permisos { get; set; }
-        public DbSet<Region> Regiones { get; set; }
-        public DbSet<RolPagos> RolPagos { get; set; }
-        public DbSet<Rubros> Rubros { get; set; }
-        public DbSet<TipoContrato> TiposContratos { get; set; }
-        public DbSet<TipoDiscapacidad> TiposDiscapacidades { get; set; }
-        public DbSet<TipoPermisos> TiposPermisos { get; set; }
-        public DbSet<DiscapacidadEmpleado> DiscacidadEmpleados{ get; set; }
-        public DbSet<RubrosEmpleados> RubrosEmpleados { get; set; }
+        public DbSet<Asistencia> asistencias { get; set; }
+        public DbSet<Cargo> cargos { get; set; }
+        public DbSet<Contrato> contratos { get; set; }
+        public DbSet<Ciudad> ciudades { get; set; }
+        public DbSet<Departamento> departamentos { get; set; }
+        public DbSet<Empleado> empleados { get; set; }
+        public DbSet<JornadaTrabajo> jornadasTrabajos { get; set; }
+        public DbSet<Pais> paises { get; set; }
+        public DbSet<Permisos> permisos { get; set; }
+        public DbSet<Region> regiones { get; set; }
+        public DbSet<RolPagos> rolPagos { get; set; }
+        public DbSet<Rubros> rubros { get; set; }
+        public DbSet<TipoContrato> tiposContratos { get; set; }
+        public DbSet<TipoDiscapacidad> tiposDiscapacidades { get; set; }
+        public DbSet<TipoPermisos> tiposPermisos { get; set; }
+        public DbSet<DiscapacidadEmpleado> discacidadEmpleados{ get; set; }
+        public DbSet<RubrosEmpleados> rubrosEmpleados { get; set; }
 
         //Modelado
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -45,10 +51,10 @@ namespace ModeloBD
                 .HasForeignKey(ciudad => ciudad.RegionId);
 
             //Relaicon uno a muchos de Cargo a Departamento
-            modelBuilder.Entity<Departamento>()
-                .HasOne(departamento => departamento.Nombre_Cargo)
-                .WithMany(cargo => cargo.Lista_Departamento)
-                .HasForeignKey(departamento => departamento.CargoId);
+            modelBuilder.Entity<Cargo>()
+                .HasOne(cargo => cargo.Nombre_Departamento)
+                .WithMany(departamento => departamento.Lista_Cargos)
+                .HasForeignKey(cargo => cargo.DepartamentoId);
 
             //Relacion uno a muchos de Tipo de Contrato a Contrato
             modelBuilder.Entity<Contrato>()
@@ -110,13 +116,13 @@ namespace ModeloBD
 
             modelBuilder.Entity<RubrosEmpleados>()
                 .HasOne(rubrosEmpleados => rubrosEmpleados.Nombre_Rubro)
-                .WithMany(rubros => rubros.RubroEmpleados)
+                .WithMany(rubros => rubros.RubroEmpleado)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(rubrosEmpleados => rubrosEmpleados.RubrosId);
 
             modelBuilder.Entity<RubrosEmpleados>()
                 .HasOne(rubrosEmpleados => rubrosEmpleados.Nombre_Empleado)
-                .WithMany(empleado => empleado.Rubros_Empleados)
+                .WithMany(empleado => empleado.RubroEmpleado)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey(rubrosEmpleados => rubrosEmpleados.EmpeladoId);
 
@@ -126,27 +132,29 @@ namespace ModeloBD
                 .WithOne(tipoDiscapacidad => tipoDiscapacidad.Nombre_Empleado)
                 .HasForeignKey<Empleado>(empleado => empleado.TipoDiscapacidadId);
 
-            //Relacion Empleado - TipoDiscapacidad - DiscapacidadEmpleado
+            //Relacion Empleado - TipoDiscapacidad - DiscapacidadEmpleado         
             modelBuilder.Entity<DiscapacidadEmpleado>()
-                .HasKey(discapacidadEmpleado => new { discapacidadEmpleado.Discapacidad, discapacidadEmpleado.Nombre_Empleado });
-
-            modelBuilder.Entity<DiscapacidadEmpleado>()
-                .HasOne(discapacidadEmpleado => discapacidadEmpleado.Discapacidad)
-                .WithMany(tipoDiscapacidad => tipoDiscapacidad.Discapacidades)
+                .HasOne(discapacidadEmpleado => discapacidadEmpleado.tipoDiscapacidad)
+                .WithMany(tipoDiscapacidad => tipoDiscapacidad.discapacidadEmpleados)
                 .OnDelete(DeleteBehavior.NoAction)
-                .HasForeignKey(discapacidadEmpleado => discapacidadEmpleado.TipoDiscapacidadId);
+                .HasForeignKey(discapacidadEmpleado => discapacidadEmpleado.tipoDiscapacidadId);
 
             modelBuilder.Entity<DiscapacidadEmpleado>()
-                .HasOne(discapacidadEmpleado => discapacidadEmpleado.Nombre_Empleado)
+                .HasOne(discapacidadEmpleado => discapacidadEmpleado.empleado)
                 .WithMany(empleado => empleado.Discapacidad)
                 .OnDelete(DeleteBehavior.NoAction)
-                .HasForeignKey(discapacidadEmpleado => discapacidadEmpleado.EmpleadoId);
+                .HasForeignKey(discapacidadEmpleado => discapacidadEmpleado.empleadoId);
+
+            modelBuilder.Entity<DiscapacidadEmpleado>()
+                .HasKey(discapacidadEmpleado => new { discapacidadEmpleado.tipoDiscapacidadId, discapacidadEmpleado.empleadoId });
         }
 
         //Conexion con la base de datos SQLServer
+        /*
         override protected void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlServer("SERVER=DESKTOP-JEQTB22; initial catalog = SGRP; trusted_connection = true;");
+            dbContextOptionsBuilder.UseSqlServer("SERVER=DESKTOP-JEQTB22; initial catalog = ROLPAGOS; trusted_connection = true;");
         }
+        */
     }
 }

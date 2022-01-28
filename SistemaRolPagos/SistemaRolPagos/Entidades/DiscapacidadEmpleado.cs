@@ -8,11 +8,11 @@ namespace SistemaRolPagos.Entidades
 {
     public class DiscapacidadEmpleado
     {
-        public int TipoDiscapacidadId { get; set; }
-        public int EmpleadoId { get; set; }
+        public int tipoDiscapacidadId { get; set; }
+        public int empleadoId { get; set; }
 
         //Relaciones
-        public Empleado Nombre_Empleado { get; set; }
-        public TipoDiscapacidad Discapacidad { get; set; }
+        public Empleado empleado { get; set; }
+        public TipoDiscapacidad tipoDiscapacidad { get; set; }
     }
 }

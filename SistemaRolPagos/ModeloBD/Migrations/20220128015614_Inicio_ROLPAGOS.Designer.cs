@@ -12,8 +12,8 @@ using ModeloBD;
 namespace ModeloBD.Migrations
 {
     [DbContext(typeof(Repositorio))]
-    [Migration("20220120034216_Inicio-SRP")]
-    partial class InicioSRP
+    [Migration("20220128015614_Inicio_ROLPAGOS")]
+    partial class Inicio_ROLPAGOS
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace ModeloBD.Migrations
 
                     b.HasKey("AsistenciaId");
 
-                    b.ToTable("Asistencias");
+                    b.ToTable("asistencias");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Cargo", b =>
@@ -56,21 +56,24 @@ namespace ModeloBD.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CargoId"), 1L, 1);
 
-                    b.Property<int>("Departamento_Id")
+                    b.Property<int>("ContratoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartamentoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombre_Cargo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Nombre_DepartamentoDepartamentoId")
-                        .HasColumnType("int");
-
                     b.HasKey("CargoId");
 
-                    b.HasIndex("Nombre_DepartamentoDepartamentoId");
+                    b.HasIndex("ContratoId")
+                        .IsUnique();
 
-                    b.ToTable("Cargos");
+                    b.HasIndex("DepartamentoId");
+
+                    b.ToTable("cargos");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Ciudad", b =>
@@ -85,17 +88,14 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Nombre_RegionRegionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Region_Id")
+                    b.Property<int>("RegionId")
                         .HasColumnType("int");
 
                     b.HasKey("CiudadId");
 
-                    b.HasIndex("Nombre_RegionRegionId");
+                    b.HasIndex("RegionId");
 
-                    b.ToTable("Ciudades");
+                    b.ToTable("ciudades");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Contrato", b =>
@@ -106,7 +106,7 @@ namespace ModeloBD.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContratoId"), 1L, 1);
 
-                    b.Property<int>("Cargo_Id")
+                    b.Property<int>("EmpleadoId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Fin_Contrato")
@@ -115,25 +115,20 @@ namespace ModeloBD.Migrations
                     b.Property<DateTime>("Inicio_Contrato")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Nombre_CargoCargoId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Sueldo_Contrato")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("TipoContrato_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Tipo_ContratoTipoContratoId")
+                    b.Property<int>("TipoContratoId")
                         .HasColumnType("int");
 
                     b.HasKey("ContratoId");
 
-                    b.HasIndex("Nombre_CargoCargoId");
+                    b.HasIndex("EmpleadoId")
+                        .IsUnique();
 
-                    b.HasIndex("Tipo_ContratoTipoContratoId");
+                    b.HasIndex("TipoContratoId");
 
-                    b.ToTable("Contratos");
+                    b.ToTable("contratos");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Departamento", b =>
@@ -150,7 +145,22 @@ namespace ModeloBD.Migrations
 
                     b.HasKey("DepartamentoId");
 
-                    b.ToTable("Departamentos");
+                    b.ToTable("departamentos");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.DiscapacidadEmpleado", b =>
+                {
+                    b.Property<int>("tipoDiscapacidadId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("empleadoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("tipoDiscapacidadId", "empleadoId");
+
+                    b.HasIndex("empleadoId");
+
+                    b.ToTable("discacidadEmpleados");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Empleado", b =>
@@ -165,10 +175,7 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AsistenciaEmpleadosAsistenciaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Asistencia_Id")
+                    b.Property<int>("AsistenciaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Banco")
@@ -183,30 +190,15 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Ciudad_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ContratoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Contrato_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email_Empleado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Empresa_Id")
-                        .HasColumnType("int");
 
                     b.Property<string>("Estado_Civil")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JornadaTrabajos_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Jornada_TrabajoJornadaTrabajoId")
+                    b.Property<int>("JornadaTrabajoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nivel_Educacion_Empleado")
@@ -214,9 +206,6 @@ namespace ModeloBD.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Nombre_CiudadCiudadId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Nombre_EmpresaEmpresaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nombres_Empleado")
@@ -227,73 +216,44 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Pasaporte_Empleado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PermisosId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Profesion_Empleado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RubrosId")
+                    b.Property<int>("RubrosId")
                         .HasColumnType("int");
 
                     b.Property<string>("Sexo_Empelado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoDiscapacidad_Id")
+                    b.Property<int>("TipoDiscapacidadId")
                         .HasColumnType("int");
 
                     b.Property<string>("Tipo_Cuenta")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Tipo_DiscapacidadTipoDiscapacidadId")
-                        .HasColumnType("int");
-
                     b.HasKey("EmpleadoId");
 
-                    b.HasIndex("AsistenciaEmpleadosAsistenciaId");
+                    b.HasIndex("AsistenciaId");
 
-                    b.HasIndex("ContratoId");
-
-                    b.HasIndex("Jornada_TrabajoJornadaTrabajoId");
+                    b.HasIndex("JornadaTrabajoId");
 
                     b.HasIndex("Nombre_CiudadCiudadId");
 
-                    b.HasIndex("Nombre_EmpresaEmpresaId");
+                    b.HasIndex("PermisosId");
 
-                    b.HasIndex("RubrosId");
+                    b.HasIndex("RubrosId")
+                        .IsUnique();
 
-                    b.HasIndex("Tipo_DiscapacidadTipoDiscapacidadId");
+                    b.HasIndex("TipoDiscapacidadId")
+                        .IsUnique();
 
-                    b.ToTable("Empleados");
-                });
-
-            modelBuilder.Entity("SistemaRolPagos.Entidades.Empresa", b =>
-                {
-                    b.Property<int>("EmpresaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpresaId"), 1L, 1);
-
-                    b.Property<string>("Nombre_Empresa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RUC_Empresa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Representante_Empresa")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmpresaId");
-
-                    b.ToTable("Empresas");
+                    b.ToTable("empleados");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.JornadaTrabajo", b =>
@@ -310,7 +270,7 @@ namespace ModeloBD.Migrations
 
                     b.HasKey("JornadaTrabajoId");
 
-                    b.ToTable("JornadasTrabajos");
+                    b.ToTable("jornadasTrabajos");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Pais", b =>
@@ -327,7 +287,7 @@ namespace ModeloBD.Migrations
 
                     b.HasKey("PaisId");
 
-                    b.ToTable("Paises");
+                    b.ToTable("paises");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Permisos", b =>
@@ -337,9 +297,6 @@ namespace ModeloBD.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PermisosId"), 1L, 1);
-
-                    b.Property<int>("Empleado_Id")
-                        .HasColumnType("int");
 
                     b.Property<string>("Estado_Permiso")
                         .IsRequired()
@@ -359,22 +316,18 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Nombre_EmpleadoEmpleadoId")
-                        .HasColumnType("int");
+                    b.Property<string>("Nombre_Permiso")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoPermisos_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Tipo_PermisosTipoPermisosId")
+                    b.Property<int>("TipoPermisosId")
                         .HasColumnType("int");
 
                     b.HasKey("PermisosId");
 
-                    b.HasIndex("Nombre_EmpleadoEmpleadoId");
+                    b.HasIndex("TipoPermisosId");
 
-                    b.HasIndex("Tipo_PermisosTipoPermisosId");
-
-                    b.ToTable("Permisos");
+                    b.ToTable("permisos");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Region", b =>
@@ -385,21 +338,18 @@ namespace ModeloBD.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RegionId"), 1L, 1);
 
-                    b.Property<int>("Nombre_PaisPaisId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nombre_Region")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Pais_Id")
+                    b.Property<int>("PaisId")
                         .HasColumnType("int");
 
                     b.HasKey("RegionId");
 
-                    b.HasIndex("Nombre_PaisPaisId");
+                    b.HasIndex("PaisId");
 
-                    b.ToTable("Regiones");
+                    b.ToTable("regiones");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.RolPagos", b =>
@@ -424,12 +374,21 @@ namespace ModeloBD.Migrations
                     b.Property<DateTime>("Fecha_Inicio")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Rubro_Id")
-                        .HasColumnType("int");
+                    b.Property<string>("Nombre_Empresa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RUC_Empresa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Representante_Empresa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RolPagosId");
 
-                    b.ToTable("RolPagos");
+                    b.ToTable("rolPagos");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Rubros", b =>
@@ -443,9 +402,6 @@ namespace ModeloBD.Migrations
                     b.Property<int>("Dias_Gracia_Rubro")
                         .HasColumnType("int");
 
-                    b.Property<int>("Empleado")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Facturar_Rubro")
                         .HasColumnType("decimal(18,2)");
 
@@ -456,7 +412,7 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RolPagosId")
+                    b.Property<int>("RolPagosId")
                         .HasColumnType("int");
 
                     b.Property<string>("Tipo_Rubro")
@@ -465,9 +421,25 @@ namespace ModeloBD.Migrations
 
                     b.HasKey("RubrosId");
 
-                    b.HasIndex("RolPagosId");
+                    b.HasIndex("RolPagosId")
+                        .IsUnique();
 
-                    b.ToTable("Rubros");
+                    b.ToTable("rubros");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.RubrosEmpleados", b =>
+                {
+                    b.Property<int>("RubrosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpeladoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RubrosId", "EmpeladoId");
+
+                    b.HasIndex("EmpeladoId");
+
+                    b.ToTable("rubrosEmpleados");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.TipoContrato", b =>
@@ -482,9 +454,13 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Nombre_Tipo_Contrato")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TipoContratoId");
 
-                    b.ToTable("TiposContratos");
+                    b.ToTable("tiposContratos");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.TipoDiscapacidad", b =>
@@ -499,9 +475,13 @@ namespace ModeloBD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("NombreTipoDiscapacidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TipoDiscapacidadId");
 
-                    b.ToTable("TiposDiscapacidades");
+                    b.ToTable("tiposDiscapacidades");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.TipoPermisos", b =>
@@ -512,21 +492,34 @@ namespace ModeloBD.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TipoPermisosId"), 1L, 1);
 
-                    b.Property<int>("Descripcion_Tipo_Permiso")
-                        .HasColumnType("int");
+                    b.Property<string>("Descripcion_Tipo_Permiso")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre_Tipo_Permiso")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TipoPermisosId");
 
-                    b.ToTable("TiposPermisos");
+                    b.ToTable("tiposPermisos");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Cargo", b =>
                 {
-                    b.HasOne("SistemaRolPagos.Entidades.Departamento", "Nombre_Departamento")
-                        .WithMany()
-                        .HasForeignKey("Nombre_DepartamentoDepartamentoId")
+                    b.HasOne("SistemaRolPagos.Entidades.Contrato", "Nombre_Contrato")
+                        .WithOne("Nombre_Cargo")
+                        .HasForeignKey("SistemaRolPagos.Entidades.Cargo", "ContratoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("SistemaRolPagos.Entidades.Departamento", "Nombre_Departamento")
+                        .WithMany("Lista_Cargos")
+                        .HasForeignKey("DepartamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Nombre_Contrato");
 
                     b.Navigation("Nombre_Departamento");
                 });
@@ -534,8 +527,8 @@ namespace ModeloBD.Migrations
             modelBuilder.Entity("SistemaRolPagos.Entidades.Ciudad", b =>
                 {
                     b.HasOne("SistemaRolPagos.Entidades.Region", "Nombre_Region")
-                        .WithMany()
-                        .HasForeignKey("Nombre_RegionRegionId")
+                        .WithMany("Lista_Ciudades")
+                        .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -544,40 +537,53 @@ namespace ModeloBD.Migrations
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Contrato", b =>
                 {
-                    b.HasOne("SistemaRolPagos.Entidades.Cargo", "Nombre_Cargo")
-                        .WithMany()
-                        .HasForeignKey("Nombre_CargoCargoId")
+                    b.HasOne("SistemaRolPagos.Entidades.Empleado", "Nombre_Empleado")
+                        .WithOne("contrato")
+                        .HasForeignKey("SistemaRolPagos.Entidades.Contrato", "EmpleadoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SistemaRolPagos.Entidades.TipoContrato", "Tipo_Contrato")
-                        .WithMany()
-                        .HasForeignKey("Tipo_ContratoTipoContratoId")
+                        .WithMany("Lista_Contrato")
+                        .HasForeignKey("TipoContratoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Nombre_Cargo");
+                    b.Navigation("Nombre_Empleado");
 
                     b.Navigation("Tipo_Contrato");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.DiscapacidadEmpleado", b =>
+                {
+                    b.HasOne("SistemaRolPagos.Entidades.Empleado", "empleado")
+                        .WithMany("Discapacidad")
+                        .HasForeignKey("empleadoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SistemaRolPagos.Entidades.TipoDiscapacidad", "tipoDiscapacidad")
+                        .WithMany("discapacidadEmpleados")
+                        .HasForeignKey("tipoDiscapacidadId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("empleado");
+
+                    b.Navigation("tipoDiscapacidad");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Empleado", b =>
                 {
                     b.HasOne("SistemaRolPagos.Entidades.Asistencia", "AsistenciaEmpleados")
                         .WithMany("Lista_Empleados")
-                        .HasForeignKey("AsistenciaEmpleadosAsistenciaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SistemaRolPagos.Entidades.Contrato", "contrato")
-                        .WithMany()
-                        .HasForeignKey("ContratoId")
+                        .HasForeignKey("AsistenciaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SistemaRolPagos.Entidades.JornadaTrabajo", "Jornada_Trabajo")
-                        .WithMany()
-                        .HasForeignKey("Jornada_TrabajoJornadaTrabajoId")
+                        .WithMany("Nombre_Empleado")
+                        .HasForeignKey("JornadaTrabajoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -587,19 +593,21 @@ namespace ModeloBD.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SistemaRolPagos.Entidades.Empresa", "Nombre_Empresa")
-                        .WithMany()
-                        .HasForeignKey("Nombre_EmpresaEmpresaId")
+                    b.HasOne("SistemaRolPagos.Entidades.Permisos", "Nombre_Permiso")
+                        .WithMany("Nombre_Empleado")
+                        .HasForeignKey("PermisosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SistemaRolPagos.Entidades.Rubros", null)
-                        .WithMany("Lista_Empleado")
-                        .HasForeignKey("RubrosId");
+                    b.HasOne("SistemaRolPagos.Entidades.Rubros", "Nombre_Rubros")
+                        .WithOne("Nombre_Empleado")
+                        .HasForeignKey("SistemaRolPagos.Entidades.Empleado", "RubrosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SistemaRolPagos.Entidades.TipoDiscapacidad", "Tipo_Discapacidad")
-                        .WithMany()
-                        .HasForeignKey("Tipo_DiscapacidadTipoDiscapacidadId")
+                    b.HasOne("SistemaRolPagos.Entidades.TipoDiscapacidad", "Nombre_TipoDiscapacidad")
+                        .WithOne("Nombre_Empleado")
+                        .HasForeignKey("SistemaRolPagos.Entidades.Empleado", "TipoDiscapacidadId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -609,28 +617,20 @@ namespace ModeloBD.Migrations
 
                     b.Navigation("Nombre_Ciudad");
 
-                    b.Navigation("Nombre_Empresa");
+                    b.Navigation("Nombre_Permiso");
 
-                    b.Navigation("Tipo_Discapacidad");
+                    b.Navigation("Nombre_Rubros");
 
-                    b.Navigation("contrato");
+                    b.Navigation("Nombre_TipoDiscapacidad");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Permisos", b =>
                 {
-                    b.HasOne("SistemaRolPagos.Entidades.Empleado", "Nombre_Empleado")
-                        .WithMany()
-                        .HasForeignKey("Nombre_EmpleadoEmpleadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("SistemaRolPagos.Entidades.TipoPermisos", "Tipo_Permisos")
-                        .WithMany()
-                        .HasForeignKey("Tipo_PermisosTipoPermisosId")
+                        .WithMany("Lista_Permisos")
+                        .HasForeignKey("TipoPermisosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Nombre_Empleado");
 
                     b.Navigation("Tipo_Permisos");
                 });
@@ -638,8 +638,8 @@ namespace ModeloBD.Migrations
             modelBuilder.Entity("SistemaRolPagos.Entidades.Region", b =>
                 {
                     b.HasOne("SistemaRolPagos.Entidades.Pais", "Nombre_Pais")
-                        .WithMany()
-                        .HasForeignKey("Nombre_PaisPaisId")
+                        .WithMany("Lista_Regiones")
+                        .HasForeignKey("PaisId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -648,9 +648,32 @@ namespace ModeloBD.Migrations
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Rubros", b =>
                 {
-                    b.HasOne("SistemaRolPagos.Entidades.RolPagos", null)
-                        .WithMany("Lista_Rubros")
-                        .HasForeignKey("RolPagosId");
+                    b.HasOne("SistemaRolPagos.Entidades.RolPagos", "Rol_Pagos")
+                        .WithOne("Nombre_Rubro")
+                        .HasForeignKey("SistemaRolPagos.Entidades.Rubros", "RolPagosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rol_Pagos");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.RubrosEmpleados", b =>
+                {
+                    b.HasOne("SistemaRolPagos.Entidades.Empleado", "Nombre_Empleado")
+                        .WithMany("RubroEmpleado")
+                        .HasForeignKey("EmpeladoId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SistemaRolPagos.Entidades.Rubros", "Nombre_Rubro")
+                        .WithMany("RubroEmpleado")
+                        .HasForeignKey("RubrosId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Nombre_Empleado");
+
+                    b.Navigation("Nombre_Rubro");
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Asistencia", b =>
@@ -658,14 +681,77 @@ namespace ModeloBD.Migrations
                     b.Navigation("Lista_Empleados");
                 });
 
+            modelBuilder.Entity("SistemaRolPagos.Entidades.Contrato", b =>
+                {
+                    b.Navigation("Nombre_Cargo")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.Departamento", b =>
+                {
+                    b.Navigation("Lista_Cargos");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.Empleado", b =>
+                {
+                    b.Navigation("Discapacidad");
+
+                    b.Navigation("RubroEmpleado");
+
+                    b.Navigation("contrato")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.JornadaTrabajo", b =>
+                {
+                    b.Navigation("Nombre_Empleado");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.Pais", b =>
+                {
+                    b.Navigation("Lista_Regiones");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.Permisos", b =>
+                {
+                    b.Navigation("Nombre_Empleado");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.Region", b =>
+                {
+                    b.Navigation("Lista_Ciudades");
+                });
+
             modelBuilder.Entity("SistemaRolPagos.Entidades.RolPagos", b =>
                 {
-                    b.Navigation("Lista_Rubros");
+                    b.Navigation("Nombre_Rubro")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SistemaRolPagos.Entidades.Rubros", b =>
                 {
-                    b.Navigation("Lista_Empleado");
+                    b.Navigation("Nombre_Empleado")
+                        .IsRequired();
+
+                    b.Navigation("RubroEmpleado");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.TipoContrato", b =>
+                {
+                    b.Navigation("Lista_Contrato");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.TipoDiscapacidad", b =>
+                {
+                    b.Navigation("Nombre_Empleado")
+                        .IsRequired();
+
+                    b.Navigation("discapacidadEmpleados");
+                });
+
+            modelBuilder.Entity("SistemaRolPagos.Entidades.TipoPermisos", b =>
+                {
+                    b.Navigation("Lista_Permisos");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,6 +9,7 @@ namespace SistemaRolPagos.Entidades
     public class Permisos
     {
         public int PermisosId { get; set; }
+        public string Nombre_Permiso { get; set; }
         public DateTime Fecha_Inicio_Permiso { get; set; }
         public DateTime Fecha_Fin_Permiso { get; set; }
         public string Hora_Inicio { get; set; }

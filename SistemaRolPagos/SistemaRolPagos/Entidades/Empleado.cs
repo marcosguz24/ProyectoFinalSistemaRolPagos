@@ -12,7 +12,6 @@ namespace SistemaRolPagos.Entidades
         public string Apellidos_Empleado { get; set; }
         public string Nombres_Empleado { get; set; }
         public string Cedula_Empleado { get; set; }
-        public string Pasaporte_Empleado { get; set; }
         public string Email_Empleado { get; set; }
         public string Celular_Empleado { get; set; }
         public string Profesion_Empleado { get; set; }
@@ -49,7 +48,7 @@ namespace SistemaRolPagos.Entidades
         public int RubrosId { get; set; }
 
         //Propiedad relacion con RubrosEmpleados
-        public IEnumerable<RubrosEmpleados> Rubros_Empleados { get; set; }
+        public IEnumerable<RubrosEmpleados> RubroEmpleado { get; set; }
 
         //Propiedad relacion con Asistencia
         public Asistencia AsistenciaEmpleados { get; set; }

@@ -19,7 +19,7 @@ namespace SistemaRolPagos.Entidades
         public Empleado Nombre_Empleado { get; set; }
 
         //Propiedad relacion con RubrosEmpleados
-        public IEnumerable<RubrosEmpleados> RubroEmpleados { get; set; }
+        public IEnumerable<RubrosEmpleados> RubroEmpleado { get; set; }
 
         //Propiedad relacion con RolPagos
         public RolPagos Rol_Pagos { get; set; }

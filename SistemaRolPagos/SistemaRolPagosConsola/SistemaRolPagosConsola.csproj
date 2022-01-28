@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CargaDatos\CargaDatos.csproj" />
     <ProjectReference Include="..\ModeloBD\ModeloBD.csproj" />
   </ItemGroup>
 
